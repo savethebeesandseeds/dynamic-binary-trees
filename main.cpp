@@ -194,7 +194,7 @@ class Shu { // memory, ---or tree representation
     JieDian_t<YanSe_t> *name_node(std::string name){ // gets a node from a node name+
       return ref_node(name_reference(name));
     }
-    int yield_memory_size(){return global_refenrence_counter.load();}
+    int tree_size(){return global_refenrence_counter.load();}
     template<typename... Args>
     JieDian_t<YanSe_t> *yield_node_step(Args&&... args){
       set_current_node(ref_node(d_state_ref)->step(args...));
@@ -318,6 +318,8 @@ int main(){
       d_shu.name_reference(def.negative_name)
     );
   }
+  // --- --- --- --- --- --- --- --- --- --- --- --- --- 
+  std::cout<<"The total number of nodes is: "<<d_shu.tree_size()<<std::endl;
   // --- --- --- --- --- --- --- --- --- --- --- --- --- 
   d_shu.set_current_node(d_shu.name_reference("START_NODE"));     // set initial state
   // --- --- --- --- --- --- --- --- --- --- --- --- --- 
